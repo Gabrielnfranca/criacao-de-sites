@@ -9,27 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Header scroll effect
+    // Header fixo com mudança de cor ao rolar
     const header = document.querySelector('header');
-    let lastScroll = 0;
-
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll <= 0) {
-            header.classList.remove('scroll-up');
-            return;
+        if (window.scrollY > 100) {
+            header.style.background = '#fff';
+            header.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+        } else {
+            header.style.background = 'transparent';
+            header.style.boxShadow = 'none';
         }
-        
-        if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
-            header.classList.remove('scroll-up');
-            header.classList.add('scroll-down');
-        } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
-            header.classList.remove('scroll-down');
-            header.classList.add('scroll-up');
-        }
-        
-        lastScroll = currentScroll;
     });
 
     // Animação de elementos ao scroll
