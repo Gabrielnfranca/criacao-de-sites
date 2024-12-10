@@ -1,156 +1,92 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Menu mobile
-    const createMobileMenu = () => {
-        const nav = document.querySelector('.nav');
-        const navLinks = document.querySelector('.nav-links');
-        
-        // Criar botão do menu
-        const menuButton = document.createElement('button');
-        menuButton.className = 'mobile-menu-btn';
-        menuButton.innerHTML = '<i class="fas fa-bars"></i>';
-        menuButton.setAttribute('aria-label', 'Menu');
-        
-        // Adicionar botão ao nav
-        nav.appendChild(menuButton);
-        
-        // Evento de click
-        menuButton.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuButton.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-    };
-
-    // Inicializar menu mobile
-    if (window.innerWidth <= 768) {
-        createMobileMenu();
-    }
-
-    // Smooth scroll para links âncora
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scroll para links de navegação
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-
-                // Fechar menu mobile se estiver aberto
-                const navLinks = document.querySelector('.nav-links');
-                const menuButton = document.querySelector('.mobile-menu-btn');
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuButton.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            }
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     });
 
-    // Header fixo com classe ativa no scroll
-    const header = document.querySelector('.header');
+    // Header scroll effect
+    const header = document.querySelector('header');
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         
-        // Adicionar classe quando rolar mais que 100px
-        if (currentScroll > 100) {
-            header.classList.add('header-scrolled');
-        } else {
-            header.classList.remove('header-scrolled');
+        if (currentScroll <= 0) {
+            header.classList.remove('scroll-up');
+            return;
         }
-
-        // Esconder/mostrar header baseado na direção do scroll
-        if (currentScroll > lastScroll && currentScroll > 500) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
+        
+        if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+            header.classList.remove('scroll-up');
+            header.classList.add('scroll-down');
+        } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
+            header.classList.remove('scroll-down');
+            header.classList.add('scroll-up');
         }
         
         lastScroll = currentScroll;
     });
 
-    // Animação de entrada dos elementos
+    // Animação de elementos ao scroll
     const observerOptions = {
         root: null,
         rootMargin: '0px',
         threshold: 0.1
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const observerCallback = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate');
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    };
 
-    // Observar elementos que devem ser animados
-    document.querySelectorAll('.service-card, .feature, .section-header').forEach(el => {
-        el.classList.add('fade-up');
-        observer.observe(el);
-    });
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Formulário de contato
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Desabilitar botão de envio
-            const submitButton = this.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.innerHTML;
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            
-            try {
-                // Coleta os dados do formulário
-                const formData = {
-                    nome: document.getElementById('nome').value,
-                    email: document.getElementById('email').value,
-                    mensagem: document.getElementById('mensagem').value
-                };
+    // Elementos para animar
+    const animateElements = document.querySelectorAll('.hero-content, .feature-content, .service-box, .process-card');
+    animateElements.forEach(el => observer.observe(el));
 
-                // Aqui você pode adicionar a lógica para enviar os dados para seu servidor
-                console.log('Dados do formulário:', formData);
-                
-                // Simular delay de envio (remover em produção)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                // Limpar formulário
-                contactForm.reset();
-                
-                // Mostrar mensagem de sucesso
-                alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
-                
-            } catch (error) {
-                console.error('Erro ao enviar mensagem:', error);
-                alert('Erro ao enviar mensagem. Por favor, tente novamente.');
-                
-            } finally {
-                // Reabilitar botão
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-            }
-        });
-    }
-
-    // Adicionar efeito de hover nos cards
-    document.querySelectorAll('.service-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
-        });
+    // Form submission
+    const form = document.querySelector('.contact-form');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        
+        try {
+            // Aqui você pode adicionar a lógica de envio do formulário
+            console.log('Form data:', data);
+            
+            // Simulação de envio
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Feedback visual
+            const button = form.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            button.textContent = 'Mensagem Enviada!';
+            button.style.backgroundColor = '#00E88F';
+            
+            // Reset do formulário
+            form.reset();
+            
+            // Restaura o botão após 3 segundos
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.backgroundColor = '';
+            }, 3000);
+            
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
+        }
     });
 });
