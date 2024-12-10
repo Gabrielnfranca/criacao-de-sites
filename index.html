@@ -6,6 +6,10 @@
     <meta name="description" content="Criação de Sites Profissionais - WebOne: Desenvolvimento de sites responsivos, otimizados para SEO e com design moderno. Transforme sua presença digital com soluções web personalizadas.">
     <title>Criação de Sites Profissionais | WebOne - Soluções Web</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta name="robots" content="index, follow">
     <meta name="author" content="WebOne">
     <meta name="keywords" content="criação de sites, desenvolvimento web, sites responsivos, web design, SEO">
@@ -46,39 +50,48 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Criação de Sites Profissionais</h1>
-                <p class="hero-subtitle">Transforme sua presença digital com um site moderno e otimizado</p>
+                <h1>Criação de Sites<br>Profissionais</h1>
+                <p class="hero-subtitle">Transforme sua presença digital com um site moderno, otimizado e que converte visitantes em clientes</p>
                 <div class="hero-cta">
-                    <a href="#contato" class="btn btn-primary">Solicitar Orçamento</a>
-                    <a href="#portfolio" class="btn btn-secondary">Ver Projetos</a>
+                    <a href="#contato" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        <span>Iniciar Projeto</span>
+                    </a>
+                    <a href="#portfolio" class="btn btn-secondary">
+                        <i class="fas fa-eye"></i>
+                        <span>Ver Projetos</span>
+                    </a>
                 </div>
             </div>
         </section>
 
         <section id="servicos" class="services">
             <div class="container">
-                <h2>Nossos Serviços</h2>
+                <div class="section-header">
+                    <h2>Soluções Completas para seu Site</h2>
+                    <p>Desenvolvemos sites profissionais que combinam design moderno, alta performance e otimização para buscadores</p>
+                </div>
                 <div class="services-grid">
                     <div class="service-card">
                         <div class="service-icon">
-                            <img src="icons/responsive.svg" alt="Sites Responsivos" width="64" height="64">
+                            <i class="fas fa-laptop-code fa-3x" style="color: var(--primary-color);"></i>
                         </div>
                         <h3>Sites Responsivos</h3>
-                        <p>Design adaptável para todos os dispositivos, garantindo a melhor experiência para seus usuários.</p>
+                        <p>Seu site funcionando perfeitamente em todos os dispositivos, desde smartphones até desktops, garantindo a melhor experiência para seus usuários.</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
-                            <img src="icons/seo.svg" alt="Otimização SEO" width="64" height="64">
+                            <i class="fas fa-search fa-3x" style="color: var(--primary-color);"></i>
                         </div>
                         <h3>Otimização SEO</h3>
-                        <p>Seu site nas primeiras posições do Google, alcançando mais clientes potenciais.</p>
+                        <p>Estratégias avançadas de SEO para posicionar seu site nos primeiros resultados do Google, aumentando sua visibilidade online.</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
-                            <img src="icons/performance.svg" alt="Alta Performance" width="64" height="64">
+                            <i class="fas fa-gauge-high fa-3x" style="color: var(--primary-color);"></i>
                         </div>
                         <h3>Alta Performance</h3>
-                        <p>Carregamento rápido e eficiente, proporcionando uma experiência excepcional.</p>
+                        <p>Sites rápidos e otimizados que carregam instantaneamente, proporcionando uma experiência excepcional aos seus visitantes.</p>
                     </div>
                 </div>
             </div>
@@ -86,19 +99,25 @@
 
         <section class="features">
             <div class="container">
-                <h2>Por que escolher a WebOne?</h2>
+                <div class="section-header">
+                    <h2>Por que escolher a WebOne?</h2>
+                    <p>Nossa experiência e compromisso com a qualidade fazem a diferença no seu projeto</p>
+                </div>
                 <div class="features-grid">
                     <div class="feature">
+                        <i class="fas fa-check-circle fa-2x" style="color: var(--primary-color); margin-bottom: 1rem;"></i>
                         <h3>Experiência Comprovada</h3>
-                        <p>Anos de experiência em desenvolvimento web e centenas de projetos entregues.</p>
+                        <p>Anos de experiência em desenvolvimento web e centenas de projetos entregues com sucesso para clientes satisfeitos.</p>
                     </div>
                     <div class="feature">
+                        <i class="fas fa-headset fa-2x" style="color: var(--primary-color); margin-bottom: 1rem;"></i>
                         <h3>Suporte Especializado</h3>
-                        <p>Equipe técnica sempre disponível para ajudar no que precisar.</p>
+                        <p>Equipe técnica sempre disponível para ajudar e garantir que seu site esteja sempre funcionando perfeitamente.</p>
                     </div>
                     <div class="feature">
+                        <i class="fas fa-code fa-2x" style="color: var(--primary-color); margin-bottom: 1rem;"></i>
                         <h3>Tecnologia de Ponta</h3>
-                        <p>Utilizamos as mais modernas tecnologias do mercado.</p>
+                        <p>Utilizamos as mais modernas tecnologias do mercado para criar sites rápidos, seguros e escaláveis.</p>
                     </div>
                 </div>
             </div>
@@ -106,8 +125,10 @@
 
         <section id="contato" class="contact">
             <div class="container">
-                <h2>Vamos Conversar?</h2>
-                <p>Entre em contato e transforme sua presença digital</p>
+                <div class="section-header">
+                    <h2>Vamos Conversar?</h2>
+                    <p>Entre em contato e transforme sua presença digital</p>
+                </div>
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <input type="text" id="nome" name="nome" placeholder="Seu Nome" required>
@@ -118,7 +139,10 @@
                     <div class="form-group">
                         <textarea id="mensagem" name="mensagem" placeholder="Sua Mensagem" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Enviar Mensagem</span>
+                    </button>
                 </form>
             </div>
         </section>
@@ -129,7 +153,12 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <img src="https://webone.com.br/wp-content/uploads/2023/12/logo.png" alt="WebOne Logo" width="120" height="40">
-                    <p>Transformando ideias em realidade digital</p>
+                    <p>Transformando ideias em realidade digital com soluções web inovadoras e personalizadas.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h4>Links Rápidos</h4>
@@ -143,11 +172,8 @@
                 <div class="footer-contact">
                     <h4>Contato</h4>
                     <p>contato@webone.com.br</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    </div>
+                    <p>Atendimento de Segunda a Sexta</p>
+                    <p>das 9h às 18h</p>
                 </div>
             </div>
             <div class="footer-bottom">
